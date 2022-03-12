@@ -1,0 +1,28 @@
+.news {
+  padding: 32px;
+  background-color: #151515;
+}
+
+.newsHead {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+  h1 {
+    margin: 0;
+    text-align: center;
+    position: relative;
+    align-self: center;
+    margin-bottom: 16px;
+    display: inline-flex;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 130%;
+      height: 3px;
+      left: -15%;
+      background-color: #333;
+      bottom: -16px;
+      border-radius: 8px;
+    }
+  }
+}

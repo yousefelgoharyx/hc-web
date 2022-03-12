@@ -1,0 +1,29 @@
+.game {
+  max-width: 450px;
+  width: 100%;
+  background-color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  padding: 32px 0;
+  button {
+    align-self: center;
+  }
+}
+
+.text {
+  font-weight: bold;
+  font-size: 2em;
+  align-self: center;
+}
+
+.image {
+  width: 150px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
