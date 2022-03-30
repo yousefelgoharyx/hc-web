@@ -24,8 +24,15 @@
   font-weight: bold;
   justify-content: center;
   display: flex;
+  cursor: pointer;
   p {
     margin: 0;
+  }
+}
+
+.linkActive {
+  a {
+    color: green;
   }
 }
 

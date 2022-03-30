@@ -1,0 +1,19 @@
+.title {
+  text-align: center;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+  padding: 0 32px;
+}
+
+.pcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-bottom: 48px;
+  margin-top: 32px;
+}

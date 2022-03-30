@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Game.module.scss";
 import Link from "next/link";
-const Game = (props) => (
+const Resturant = (props) => (
   <Link href={props.href || "/"}>
     <div className={styles.game}>
       <div className={styles.image}>
@@ -20,4 +20,4 @@ const Game = (props) => (
   </Link>
 );
 
-export default Game;
+export default Resturant;

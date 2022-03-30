@@ -1,8 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import instance from "../utils/axios";
-
-const about = ({ data }) => {
+const history = ({ data, notFound }) => {
   let content = null;
   if (data) {
     content = (
@@ -11,22 +10,20 @@ const about = ({ data }) => {
         dangerouslySetInnerHTML={{ __html: data.description }}
       ></div>
     );
-  } else {
+  } else if (notFound) {
     content = <div className="empty">لا شيئ هنا</div>;
   }
   return (
     <div>
       <Navbar />
-      <div className="container">
-        <div className="nav-top">{content}</div>
-      </div>
+      <div className="nav-top">{content}</div>
     </div>
   );
 };
 
 export async function getStaticProps(context) {
   try {
-    const res = await instance.get("/api/content/about");
+    const res = await instance.get("/api/content/history");
     return {
       props: {
         data: res.data,
@@ -38,4 +35,5 @@ export async function getStaticProps(context) {
     };
   }
 }
-export default about;
+
+export default history;

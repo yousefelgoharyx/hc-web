@@ -17,6 +17,7 @@ body {
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 32px;
 }
 body {
   position: relative;
@@ -232,4 +233,42 @@ img {
 
 .copyright a {
   color: #008000;
+}
+
+.nav-top {
+  margin-top: 142px;
+}
+
+.rte {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.rte:last-child {
+  margin-bottom: 48px;
+}
+
+.rte h1,
+.rte h2,
+.rte h3,
+.rte h4,
+.rte h5,
+.rte h6,
+.rte p {
+  margin-bottom: 12px;
+}
+
+.rte img {
+  max-width: 992px;
+}
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  font-size: 32px;
+  font-weight: bold;
 }
