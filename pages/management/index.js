@@ -3,7 +3,12 @@ import Navbar from "../../components/Navbar/Navbar";
 import styles from "./index.module.scss";
 import Resturant from "../../components/Resturant/Game";
 import Person2 from "../../components/Person2/Person2";
-const index = () => {
+import instance from "../../utils/axios";
+import resolveImage from "../../utils/resolveImage";
+
+const index = ({ data }) => {
+  console.log(data);
+
   return (
     <div>
       <Navbar />
@@ -13,16 +18,30 @@ const index = () => {
         </div>
 
         <div className={styles.newsGrid}>
-          <Person2 job="Hello" title="mewo" href="/resturants/2" />
-          <Person2 job="Hello" title="mewo" href="/resturants/2" />
-          <Person2 job="Hello" title="mewo" href="/resturants/2" />
-          <Person2 job="Hello" title="mewo" href="/resturants/2" />
-          <Person2 job="Hello" title="mewo" href="/resturants/2" />
-          <Person2 job="Hello" title="mewo" href="/resturants/2" />
+          {data.map((item) => (
+            <Person2
+              job={item.job}
+              title={item.name}
+              image={resolveImage(item.image)}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 };
-
+export async function getStaticProps(context) {
+  try {
+    const res = await instance.get("/api/influentialperson/managerial");
+    return {
+      props: {
+        data: res.data,
+      }, // will be passed to the page component as props
+    };
+  } catch (error) {
+    return {
+      props: { notFound: true },
+    };
+  }
+}
 export default index;
