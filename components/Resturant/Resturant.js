@@ -10,8 +10,9 @@ const Resturant = (props) => (
             width: "100%",
             height: "100%",
             backgroundSize: "cover",
-            backgroundImage:
-              'url("https://i2-prod.football.london/incoming/article17909924.ece/ALTERNATES/s1200b/0_GettyImages-1210995196.jpg")',
+            backgroundImage: props.image
+              ? 'url(" ' + props.image + ' ")'
+              : 'url("https://i2-prod.football.london/incoming/article17909924.ece/ALTERNATES/s1200b/0_GettyImages-1210995196.jpg")',
           }}
         ></div>
       </div>
