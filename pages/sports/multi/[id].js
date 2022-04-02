@@ -5,16 +5,16 @@ import "swiper/css";
 import Navbar from "../../../components/Navbar/Navbar";
 import Person from "../../../components/Person/Person";
 import styles from "../index.module.scss";
-const newItem = () => {
-  const { query } = useRouter();
+import instance from "../../../utils/axios";
+import resolveImage from "../../../utils/resolveImage";
 
+const newItem = ({ data }) => {
   return (
     <div>
       <Navbar />
       <div className="container">
         <div className={"nav-top " + styles.title}>
-          <h1>كرة القدم</h1>
-          <div>{JSON.stringify(query)}</div>
+          <h1>{data.name}</h1>
         </div>
         <div className={styles.pcontainer}>
           <div>
@@ -23,117 +23,78 @@ const newItem = () => {
             </div>
 
             <div className={styles.newsGrid}>
-              <Person job="مدير" title="باسم طارق" />
-              <Person job="مدير" title="باسم طارق" />
-              <Person job="مدير" title="باسم طارق" />
-              <Person job="مدير" title="باسم طارق" />
+              {data.GameModerators.map((item) => (
+                <Person
+                  job={item.type}
+                  title={item.name}
+                  image={resolveImage(item.image)}
+                />
+              ))}
             </div>
           </div>
-          {/* Name */}
           <div className={styles.title}>
             <h1>الفرق</h1>
           </div>
-          <div>
-            {/* Sub Name */}
-            <div className={styles.subtitle}>
-              <h3>فرقة ميزو</h3>
-            </div>
-            {/* Swiper */}
-            <div className={styles.newsGrid}>
-              <div>
-                <Swiper
-                  spaceBetween={32}
-                  slidesPerView={1}
-                  breakpoints={{
-                    320: {
-                      slidesPerView: 1,
-                    },
-                    640: {
-                      slidesPerView: 2,
-                    },
-                    992: {
-                      slidesPerView: 3,
-                    },
-                    1440: {
-                      slidesPerView: 4,
-                    },
-                  }}
-                  onSlideChange={() => console.log("slide change")}
-                  loop={false}
-                  onSwiper={(swiper) => console.log(swiper)}
-                >
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                </Swiper>
+          {data.GameTeams.map((item) => (
+            <div>
+              <div className={styles.subtitle}>
+                <h3>{item.name}</h3>
+              </div>
+              <div className={styles.newsGrid}>
+                <div>
+                  <Swiper
+                    spaceBetween={32}
+                    slidesPerView={1}
+                    breakpoints={{
+                      320: {
+                        slidesPerView: 1,
+                      },
+                      640: {
+                        slidesPerView: 2,
+                      },
+                      992: {
+                        slidesPerView: 3,
+                      },
+                      1440: {
+                        slidesPerView: 4,
+                      },
+                    }}
+                    onSlideChange={() => console.log("slide change")}
+                    loop={false}
+                    onSwiper={(swiper) => console.log(swiper)}
+                  >
+                    {data.GamePlayers.filter(
+                      (player) => player.teamId === item.id
+                    ).map((ele) => (
+                      <SwiperSlide>
+                        <Person
+                          title={ele.name}
+                          image={resolveImage(ele.image)}
+                        />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div>
-            {/* Sub Name */}
-            <div className={styles.subtitle}>
-              <h3>فرقة ميزو</h3>
-            </div>
-            {/* Swiper */}
-            <div className={styles.newsGrid}>
-              <div>
-                <Swiper
-                  spaceBetween={32}
-                  slidesPerView={1}
-                  breakpoints={{
-                    320: {
-                      slidesPerView: 1,
-                    },
-                    640: {
-                      slidesPerView: 2,
-                    },
-                    992: {
-                      slidesPerView: 3,
-                    },
-                    1440: {
-                      slidesPerView: 4,
-                    },
-                  }}
-                  onSlideChange={() => console.log("slide change")}
-                  loop={false}
-                  onSwiper={(swiper) => console.log(swiper)}
-                >
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <Person job="مدير" title="باسم طارق" />
-                  </SwiperSlide>
-                </Swiper>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
   );
 };
-
+export async function getServerSideProps(context) {
+  try {
+    const res = await instance.get(`/api/game/${context.query.id}`);
+    return {
+      props: {
+        data: res.data,
+      }, // will be passed to the page component as props
+    };
+  } catch (error) {
+    return {
+      props: { notFound: true },
+    };
+  }
+}
 export default newItem;

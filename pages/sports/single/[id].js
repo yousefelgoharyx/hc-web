@@ -3,16 +3,15 @@ import React from "react";
 import Navbar from "../../../components/Navbar/Navbar";
 import Person from "../../../components/Person/Person";
 import styles from "../index.module.scss";
-const newItem = () => {
-  const { query } = useRouter();
-
+import instance from "../../../utils/axios";
+import resolveImage from "../../../utils/resolveImage";
+const newItem = ({ data }) => {
   return (
     <div>
       <Navbar />
       <div className="container">
         <div className={"nav-top " + styles.title}>
-          <h1>كرة القدم</h1>
-          <div>{JSON.stringify(query)}</div>
+          <h1>{data.name}</h1>
         </div>
         <div className={styles.pcontainer}>
           <div>
@@ -21,10 +20,13 @@ const newItem = () => {
             </div>
 
             <div className={styles.newsGrid}>
-              <Person job="مدير" title="باسم طارق" />
-              <Person job="مدير" title="باسم طارق" />
-              <Person job="مدير" title="باسم طارق" />
-              <Person job="مدير" title="باسم طارق" />
+              {data.GameModerators.map((item) => (
+                <Person
+                  job={item.type}
+                  title={item.name}
+                  image={resolveImage(item.image)}
+                />
+              ))}
             </div>
           </div>
 
@@ -34,10 +36,9 @@ const newItem = () => {
             </div>
 
             <div className={styles.newsGrid}>
-              <Person title="باسم طارق" />
-              <Person title="باسم طارق" />
-              <Person title="باسم طارق" />
-              <Person title="باسم طارق" />
+              {data.GamePlayers.map((item) => (
+                <Person title={item.name} image={resolveImage(item.image)} />
+              ))}
             </div>
           </div>
         </div>
@@ -45,5 +46,18 @@ const newItem = () => {
     </div>
   );
 };
-
+export async function getServerSideProps(context) {
+  try {
+    const res = await instance.get(`/api/game/${context.query.id}`);
+    return {
+      props: {
+        data: res.data,
+      }, // will be passed to the page component as props
+    };
+  } catch (error) {
+    return {
+      props: { notFound: true },
+    };
+  }
+}
 export default newItem;

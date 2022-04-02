@@ -7,8 +7,6 @@ import instance from "../../utils/axios";
 import resolveImage from "../../utils/resolveImage";
 
 const index = ({ data }) => {
-  console.log(data);
-
   return (
     <div>
       <Navbar />
