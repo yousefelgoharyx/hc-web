@@ -9,13 +9,15 @@ const Match = (props) => {
     <div className={styles.match}>
       <div className={styles.opponent}>
         <div className={styles.image}>
-          <img
-            src={resolveImage(props.fTeamImage)}
-            alt={props.fTeamImage}
-            width={128}
-            height={128}
-            layout="fill"
-          />
+          <div
+            style={{
+              backgroundImage: `url('${resolveImage(props.fTeamImage)}')`,
+              height: "100%",
+              width: "100%",
+              backgroundSize: "cover",
+              backgroundPosition: "50% 50%",
+            }}
+          ></div>
         </div>
         <div>{props.fTeamName}</div>
       </div>
@@ -28,13 +30,15 @@ const Match = (props) => {
       </div>
       <div className={styles.opponent}>
         <div className={styles.image}>
-          <img
-            src={resolveImage(props.sTeamImage)}
-            alt={props.sTeamImage}
-            width={128}
-            height={128}
-            layout="fill"
-          />
+          <div
+            style={{
+              backgroundImage: `url('${resolveImage(props.sTeamImage)}')`,
+              height: "100%",
+              width: "100%",
+              backgroundSize: "cover",
+              backgroundPosition: "50% 50%",
+            }}
+          ></div>
         </div>
         <div>{props.sTeamName}</div>
       </div>

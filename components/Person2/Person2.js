@@ -3,6 +3,7 @@ import styles from "./Game.module.scss";
 import Link from "next/link";
 import d from "./download.svg";
 import Image from "next/image";
+import resolveImage from "../../utils/resolveImage";
 const Person2 = (props) => {
   return (
     <div className={styles.game}>
@@ -33,7 +34,9 @@ const Person2 = (props) => {
           <div className={styles.job}>{props.job}</div>
         </div>
         <div style={{ cursor: "pointer", alignSelf: "center" }}>
-          <Image src={d} width={16} height={16} alt="" />
+          <a href={resolveImage(props.cv)} download>
+            <Image src={d} width={16} height={16} alt="" />
+          </a>
         </div>
       </div>
     </div>

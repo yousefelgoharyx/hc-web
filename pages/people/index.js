@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import styles from "./index.module.scss";
-import Resturant from "../../components/Resturant/Game";
+import Resturant from "../../components/Resturant/Resturant";
 import Person2 from "../../components/Person2/Person2";
 import instance from "../../utils/axios";
 import resolveImage from "../../utils/resolveImage";
@@ -20,6 +20,7 @@ const index = ({ data }) => {
               job={item.job}
               title={item.name}
               image={resolveImage(item.image)}
+              cv={item.cv}
             />
           ))}
         </div>

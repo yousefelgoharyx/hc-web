@@ -1,4 +1,5 @@
 import React from "react";
+import resolveImage from "../../utils/resolveImage";
 import Button from "../Button/Button";
 import styles from "./Person.module.scss";
 
@@ -21,7 +22,9 @@ const Person = (props) => {
         <div className={styles.text}>{props.title}</div>
         {props.job ? <div className={styles.job}>{props.job}</div> : null}
       </div>
-      <Button>السبرة الذاتية</Button>
+      <a href={resolveImage(props.cv)} download>
+        <Button>السبرة الذاتية</Button>
+      </a>
     </div>
   );
 };
