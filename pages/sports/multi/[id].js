@@ -28,6 +28,7 @@ const newItem = ({ data }) => {
                   job={item.type}
                   title={item.name}
                   image={resolveImage(item.image)}
+                  key={item.id}
                 />
               ))}
             </div>
@@ -36,44 +37,21 @@ const newItem = ({ data }) => {
             <h1>الفرق</h1>
           </div>
           {data.GameTeams.map((item) => (
-            <div>
+            <div key={item.id}>
               <div className={styles.subtitle}>
                 <h3>{item.name}</h3>
               </div>
               <div className={styles.newsGrid}>
                 <div>
-                  <Swiper
-                    spaceBetween={32}
-                    slidesPerView={1}
-                    breakpoints={{
-                      320: {
-                        slidesPerView: 1,
-                      },
-                      640: {
-                        slidesPerView: 2,
-                      },
-                      992: {
-                        slidesPerView: 3,
-                      },
-                      1440: {
-                        slidesPerView: 4,
-                      },
-                    }}
-                    onSlideChange={() => console.log("slide change")}
-                    loop={false}
-                    onSwiper={(swiper) => console.log(swiper)}
-                  >
-                    {data.GamePlayers.filter(
-                      (player) => player.teamId === item.id
-                    ).map((ele) => (
-                      <SwiperSlide>
-                        <Person
-                          title={ele.name}
-                          image={resolveImage(ele.image)}
-                        />
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
+                  {data.GamePlayers.filter(
+                    (player) => player.teamId === item.id
+                  ).map((ele) => (
+                    <Person
+                      key={ele.id}
+                      title={ele.name}
+                      image={resolveImage(ele.image)}
+                    />
+                  ))}
                 </div>
               </div>
             </div>

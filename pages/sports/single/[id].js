@@ -22,6 +22,7 @@ const newItem = ({ data }) => {
             <div className={styles.newsGrid}>
               {data.GameModerators.map((item) => (
                 <Person
+                  key={item.id}
                   job={item.type}
                   title={item.name}
                   image={resolveImage(item.image)}
@@ -37,7 +38,11 @@ const newItem = ({ data }) => {
 
             <div className={styles.newsGrid}>
               {data.GamePlayers.map((item) => (
-                <Person title={item.name} image={resolveImage(item.image)} />
+                <Person
+                  key={item.id}
+                  title={item.name}
+                  image={resolveImage(item.image)}
+                />
               ))}
             </div>
           </div>

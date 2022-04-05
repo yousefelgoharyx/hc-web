@@ -18,6 +18,7 @@ const index = ({ data }) => {
         <div className={styles.newsGrid}>
           {data.map((item) => (
             <Person2
+              key={item.id}
               job={item.job}
               title={item.name}
               image={resolveImage(item.image)}

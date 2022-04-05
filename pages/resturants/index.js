@@ -19,6 +19,7 @@ const index = ({ data }) => {
               image={resolveImage(item.image)}
               title={item.title}
               href={`/resturants/${item.id}`}
+              key={item.id}
             />
           ))}
         </div>

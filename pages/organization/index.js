@@ -20,6 +20,7 @@ const index = ({ data }) => {
               title={item.name}
               image={resolveImage(item.image)}
               cv={item.cv}
+              key={item.id}
             />
           ))}
         </div>

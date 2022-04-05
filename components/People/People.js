@@ -1,10 +1,10 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import resolveImage from "../../utils/resolveImage";
 
-import Game from "../Game/Game";
 import Person from "../Person/Person";
 import styles from "./People.module.scss";
-const People = () => {
+const People = ({ people }) => {
   return (
     <div className={styles.gamesContainer}>
       <div className="container">
@@ -18,94 +18,28 @@ const People = () => {
           loop={false}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Person title="كرة القدم" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Person title="كرة القدم" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Person title="كرة القدم" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Person title="كرة القدم" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Person title="كرة القدم" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Person title="كرة القدم" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Person title="كرة القدم" />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Person title="كرة القدم" />
-            </div>
-          </SwiperSlide>
+          {people.length > 0 ? (
+            people.map((newItem) => (
+              <SwiperSlide key={newItem.id}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Person
+                    title={newItem.title}
+                    image={resolveImage(newItem.image)}
+                    job={newItem.job}
+                    cv={resolveImage(newItem.cv)}
+                  />
+                </div>
+              </SwiperSlide>
+            ))
+          ) : (
+            <div className="empty">لا اخبار</div>
+          )}
         </Swiper>
       </div>
     </div>

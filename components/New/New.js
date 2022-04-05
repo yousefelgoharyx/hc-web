@@ -14,10 +14,11 @@ const New = ({ image, title, date, id }) => {
           {moment(date).format("DD/MM/YYYY")}
         </div>
         <p className={styles.newTitle}>{title}</p>
-
-        <Button>
-          <Link href={`/news/${id}`}>المزيد</Link>
-        </Button>
+        <Link style={{ display: "block" }} href={`/news/${id}`}>
+          <div>
+            <Button>المزيد</Button>
+          </div>
+        </Link>
       </div>
     </div>
   );

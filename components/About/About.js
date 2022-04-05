@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import Button from "../Button/Button";
 import styles from "./About.module.scss";
@@ -33,7 +34,9 @@ const About = () => {
               نص بديل لا علاقة له بالموضوع الذى يتحدث عنه التصميم فيظهر بشكل لا
               يليق.
             </p>
-            <Button style={styles.aboutButton}>المزيد</Button>
+            <Link href="/about">
+              <Button style={styles.aboutButton}>المزيد</Button>
+            </Link>
           </div>
         </div>
       </div>

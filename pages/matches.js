@@ -51,18 +51,23 @@ const matches = ({ data }) => {
       <Navbar />
       <div className="nav-top">
         <div className="container" style={{ padding: "32px 32px 0" }}>
-          {data.map((item) => (
-            <Match
-              fTeamImage={item.fTeamImage}
-              sTeamImage={item.sTeamImage}
-              fTeamName={item.fTeamName}
-              sTeamName={item.sTeamName}
-              matchTime={item.matchTime}
-              location={item.location}
-              fTeamScore={item.fTeamScore}
-              sTeamScore={item.sTeamScore}
-            />
-          ))}
+          {data.length > 0 ? (
+            data.map((item) => (
+              <Match
+                key={item.id}
+                fTeamImage={item.fTeamImage}
+                sTeamImage={item.sTeamImage}
+                fTeamName={item.fTeamName}
+                sTeamName={item.sTeamName}
+                matchTime={item.matchTime}
+                location={item.location}
+                fTeamScore={item.fTeamScore}
+                sTeamScore={item.sTeamScore}
+              />
+            ))
+          ) : (
+            <div className="empty">لا شيء هنا</div>
+          )}
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@ const index = ({ data }) => {
                 date={item.createdAt}
                 image={resolveImage(item.image)}
                 id={item.id}
+                key={item.id}
               />
             ))}
           </div>

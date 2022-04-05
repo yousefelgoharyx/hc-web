@@ -1,8 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import resolveImage from "../../utils/resolveImage";
 import Game from "../Game/Game";
 import styles from "./Games.module.scss";
-const Games = () => {
+const Games = ({ games }) => {
   return (
     <div className={styles.gamesContainer}>
       <div className="container">
@@ -30,30 +31,19 @@ const Games = () => {
           loop={false}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide>
-            <Game title="كرة القدم" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Game title="كرة القدم" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Game title="كرة القدم" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Game title="كرة القدم" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Game title="كرة القدم" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Game title="كرة القدم" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Game title="كرة القدم" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Game title="كرة القدم" />
-          </SwiperSlide>
+          {games.length > 0 ? (
+            games.map((newItem) => (
+              <SwiperSlide key={newItem.id}>
+                <Game
+                  href={`/sports/${newItem.type}/${newItem.id}`}
+                  image={resolveImage(newItem.image)}
+                  title={newItem.name}
+                />
+              </SwiperSlide>
+            ))
+          ) : (
+            <div className="empty">لا اخبار</div>
+          )}
         </Swiper>
       </div>
     </div>
