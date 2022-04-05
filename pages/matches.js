@@ -73,7 +73,7 @@ const matches = ({ data }) => {
     </div>
   );
 };
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   try {
     const res = await instance.get("/api/matches");
     return {

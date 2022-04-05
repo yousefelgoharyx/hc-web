@@ -27,7 +27,7 @@ const index = ({ data }) => {
     </div>
   );
 };
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   try {
     const res = await instance.get("/api/publicplaces");
     return {

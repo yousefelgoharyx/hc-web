@@ -24,7 +24,7 @@ const about = ({ data }) => {
   );
 };
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   try {
     const res = await instance.get("/api/content/about");
     return {

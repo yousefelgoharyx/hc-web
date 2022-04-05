@@ -22,18 +22,7 @@ const newItem = ({ data }) => {
   );
 };
 
-export async function getStaticPaths(context) {
-  const res = await instance.get("/api/news");
-  const paths = res.data.map((item) => ({
-    params: { id: String(item.id) },
-  }));
-  return {
-    paths,
-    fallback: true,
-  };
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const res = await instance.get("/api/news/" + context.params.id);
 
   return {

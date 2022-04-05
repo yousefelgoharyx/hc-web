@@ -21,7 +21,7 @@ const history = ({ data, notFound }) => {
   );
 };
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   try {
     const res = await instance.get("/api/content/history");
     return {
